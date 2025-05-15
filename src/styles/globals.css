@@ -8,4 +8,71 @@
   html {
     font-family: Bricolage Grotesque, system-ui, sans-serif;
   }
+
+  body {
+    background-color: bg-primary;
+  }
+}
+
+.link:hover {
+  @apply text-primary-500;
+}
+
+.nav-link {
+  @apply relative;
+}
+
+.nav-link::before {
+  @apply absolute top-[-12px] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-secondary rounded-full opacity-0 transition-opacity duration-300 ease-in-out;
+  content: '';
+}
+
+.nav-link:hover::before {
+  @apply opacity-100;
+}
+
+.nav-link.active {
+  @apply font-bold;
+}
+
+.nav-link.active::before {
+  @apply opacity-100;
+}
+
+.footer-link:hover {
+  @apply text-primary-500;
+}
+
+.footer-link.active {
+  @apply text-primary-500;
+}
+
+.animate,
+.nav-link,
+.nav-link:hover {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.box-hero {
+  @apply p-6 bg-primary-beige min-h-[250px] rounded space-y-5 hover:bg-primary-100 animate;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.img {
+    @apply object-cover w-full h-full;
+}
+
+.scale-animation {
+    @apply hover:scale-125 transition-all duration-700;
+}
+
+hr {
+  @apply bg-primary;
 }

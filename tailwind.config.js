@@ -3,10 +3,15 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
 
+    // Colors
     colors: {
       white: "#FFFFFF",
       primary: {
-        beige: "#F7F3E5",
+        beige: "#f7f6ef",
+        100: "#f1efe3",
+        200: "#e2dec6",
+        300: "#c6b07e",
+        500: "#a6824c",
         DEFAULT: "#4C352A",
       },
       secondary: "#F5BAC5",
@@ -18,8 +23,14 @@ module.exports = {
         800: "#333333",
         DEFAULT: "#1D1D1D",
 
+      },
+      alert: {
+        danger: "#FF4E4E",
+        success: "#90DA1A",
+        warning: "#FEB72F",
       }
     },
+    // Font Size
     fontSize: {
       '8xl': [
         '80px', 
@@ -127,6 +138,7 @@ module.exports = {
         },
       ],
     },
+    // Border Radius
     borderRadius: {
       DEFAULT: '10px',
       full: "9999px",
