@@ -2,23 +2,24 @@
 import { Logo } from "@/ui/design-system/logo/logo";
 import { Typography } from "@/ui/design-system/typography/typography";
 // LIBRARY
+import { LinkTypes } from "@/lib/link-type";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 // COMPONENT
 import { Container } from "../container/container";
 import { ActiveLink } from "./active-link";
 // DATA
-import { footerApplicationLinks, footerLinks, footerUsersLinks } from "./app-links";
-import { AppLinks, FooterLinks } from "@/types/app-links";
-import { LinkTypes } from "@/lib/link-type";
+import { footerLinks } from "./app-links";
+import { FooterLinks } from "@/types/app-links";
+// ICONS
 import { SocialButtons } from "./social-buttons";
+import { LogoSecondary } from "@/ui/design-system/logo/logoSecondary";
 
 
 export const Footer = () => {
 
     const currentYear = new Date().getFullYear();
 
-    // map data in footerLinks => @navigation/app-links.tsx
     const footerNavigationList = footerLinks.map((columnLinks) => (
         <FooterLink key={uuidv4()} data={columnLinks} />
     ))
@@ -27,10 +28,9 @@ export const Footer = () => {
         <Container className="bg-primary-beige border-2 border-primary mx-auto max-w-[92%] 2xl:max-w-screen-xl w-full rounded pt-16 mb-20">
             <div className="flex flex-col items-center gap-12 md:flex-row md:justify-between">
                 <div className="flex flex-col items-center text-center gap-6 md:items-start md:text-left">
-                    {/* LOGO */}
                     <Link href="/">
                         <div>
-                            <Logo size="large" />
+                            <LogoSecondary size="large" />
                         </div>
                     </Link>
 
@@ -69,7 +69,6 @@ interface footerLinkProps {
     data: FooterLinks;
 }
 
-// Component list with title
 const FooterLink = ({ data }: footerLinkProps) => {
 
     const LinksList = data.links.map((link) => (

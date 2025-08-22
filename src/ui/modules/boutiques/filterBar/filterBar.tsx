@@ -1,8 +1,12 @@
+// TYPES
 import { Boutique } from "@/types/boutique-types";
+// DESIGN SYSTEM
 import { Button } from "@/ui/design-system/button/button";
 import { Select } from "@/ui/design-system/select/select";
 import { Typography } from "@/ui/design-system/typography/typography";
+// UTILS
 import { useEffect, useState } from "react";
+// ICONS
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 interface Props {
@@ -12,7 +16,7 @@ interface Props {
   showMap: boolean;
 }
 
-const TAGS = ["boulangerie", "patisserie"]
+const TAGS = ["Boulangerie", "Pâtisserie"]
 
 const COMMUNES = [
   "anderlecht",
@@ -49,26 +53,43 @@ export default function FilterBar({ allBoutiques, onFilter, setShowMap, showMap 
   const [selectedCommune, setSelectedCommune] = useState<string | null>(null)
   const [sort, setSort] = useState<string>("alpha");
   const [open, setOpen] = useState(false);
+
+  const norm = (s?: string) =>
+    (s || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+
+  function extractCommuneAdresse(adresses?: string | null): string | null {
+    if (!adresses) return null;
+    const m = adresses.match(/\b(\d{4})\s+([^,]+)/);
+    if (!m) return null;
+    return m[2].trim().toLowerCase().replace(/\s+/g, "-");
+  }
   
 
   useEffect(() => {
     let filtered = [...allBoutiques];
   
     if (selectedTag) {
+      const sel = norm(selectedTag);
       filtered = filtered.filter((b) =>
-        b.categorie?.includes(selectedTag)
+          (b.categories || []).some((c) => norm(c) === sel)
       );
     }
   
     if (selectedCommune) {
       filtered = filtered.filter(
-        (b) => b.location?.commune?.toLowerCase() === selectedCommune.toLowerCase()
+        (b) => extractCommuneAdresse(b.adresse) === selectedCommune
       );
     }
 
     if (sort === "alpha") {
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    filtered.sort((a, b) =>
+      (a.displayName || "").localeCompare(b.displayName || "")
+    );
+  }
   
     onFilter(filtered);
   }, [selectedTag, selectedCommune, sort, allBoutiques, onFilter]);  
@@ -76,7 +97,7 @@ export default function FilterBar({ allBoutiques, onFilter, setShowMap, showMap 
   
 
   return (
-    <div className="sticky top-0 z-10 bg-primary-beige border-b border-primary pb-4 py-3">
+    <div className="sticky top-0 z-[1000] bg-primary-beige border-b border-primary pb-4 py-3">
 
       {/* Toggle mobile */}
       <div className="flex justify-between items-center md:hidden mb-6">
@@ -90,6 +111,7 @@ export default function FilterBar({ allBoutiques, onFilter, setShowMap, showMap 
 
       {/* Contenu */}
       <div className={`${open ? "flex" : "hidden"} flex-col gap-6 md:flex-row md:items-center md:justify-between md:flex`}>
+
       {/* Catégories */}
         <div className="flex flex-col gap-2">
           <Typography variant="caption2" weight="medium">Catégories</Typography>
@@ -144,6 +166,7 @@ export default function FilterBar({ allBoutiques, onFilter, setShowMap, showMap 
             <Button size="small" onClick={() => setShowMap(false)} variant={!showMap ? "primary" : "secondary"}>Non</Button>
           </div>
         </div>
+        
       </div>
     </div>
   )

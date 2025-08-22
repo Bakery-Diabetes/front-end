@@ -12,7 +12,7 @@ export default function BoutiquePage(props: any) {
         description={props.boutique?.description?.slice(0, 150)}
       />
 
-      <Layout>
+      <Layout breadcrumbLastLabel={props.boutique?.displayName}>
         <BoutiqueDetailContainer {...props} />
       </Layout>
     </>

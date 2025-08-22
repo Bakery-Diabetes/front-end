@@ -1,9 +1,13 @@
-import { Container } from "@/ui/components/container/container";
-import { LoginForm } from "./login-form";
+// TYPES
 import { FormsType } from "@/types/forms";
+// COMPONENTS
+import { Container } from "@/ui/components/container/container";
+// DESIGN SYSTEM
 import { Box } from "@/ui/design-system/box/box";
 import { Typography } from "@/ui/design-system/typography/typography";
+// UTILS
 import Link from "next/link";
+import { LoginForm } from "./login-form";
 
 interface Props {
   form: FormsType;
@@ -12,8 +16,8 @@ interface Props {
 export const LoginView = ({ form }: Props) => {
 
   return (
-    <Container className="mb-32">
-      <div className="flex items-center justify-center py-96">
+    <Container>
+      <div className="flex items-center justify-center py-32">
         <Box padding_y="py-5">
           <div className="flex items-center justify-between">
             <Typography variant="h3" component="h1">
@@ -22,14 +26,14 @@ export const LoginView = ({ form }: Props) => {
 
             <div className="flex items-center gap-2">
               <Typography variant="caption3" component="span">
-                Tu n'as pas de compte ?
+                Tu n&apos;as pas de compte ?
               </Typography>
               <Typography
                 variant="caption3"
                 component="span"
                 className="hover:text-secondary"
               >
-                <Link href="/connexion/inscription">S'inscrire</Link>
+                <Link href="/connexion/inscription">S&apos;inscrire</Link>
               </Typography>
             </div>
           </div>

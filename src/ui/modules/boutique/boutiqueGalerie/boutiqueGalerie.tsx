@@ -1,15 +1,17 @@
-import { FC, useState } from "react"
-import Image from "next/image"
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
-import { MdCancel } from "react-icons/md"
-import { motion, AnimatePresence } from "framer-motion"
-
-import { Photo } from "@/types/boutique-types"
-import { Button } from "@/ui/design-system/button/button"
-import { Spinner } from "@/ui/design-system/spinner/spinner"
+// TYPES
+import { Photo } from "@/types/boutique-types";
+// DESIGN SYSTEM
+import { Button } from "@/ui/design-system/button/button";
+import { Spinner } from "@/ui/design-system/spinner/spinner";
+// UTILS
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { FC, useState } from "react";
+// ICONS
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 interface BoutiqueGalerieProps {
-  photos: Photo[]
+  photos: string[];
   loading?: boolean
 }
 
@@ -46,7 +48,7 @@ const BoutiqueGalerie: FC<BoutiqueGalerieProps> = ({ photos, loading = false }) 
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 md:sticky top-24 max-h-[90vh] self-start">
 
         {/* image principale */}
         <div className="w-full max-w-[600px] mx-auto h-[600px] relative rounded overflow-hidden">
@@ -57,7 +59,7 @@ const BoutiqueGalerie: FC<BoutiqueGalerieProps> = ({ photos, loading = false }) 
             className="w-full h-full"
           >
             <Image
-                src={photos[currentPhotoIndex].asset.url}
+                src={photos[currentPhotoIndex]}
                 alt={`Photo ${currentPhotoIndex + 1}`}
                 className="object-cover w-full h-full"
                 width={600}
@@ -79,18 +81,18 @@ const BoutiqueGalerie: FC<BoutiqueGalerieProps> = ({ photos, loading = false }) 
                   className={`w-[90px] h-[90px] rounded overflow-hidden cursor-pointer ${index === currentPhotoIndex ? "border-primary border-4" : ""}`}
               >
                   <Image
-                  src={photo.asset.url}
-                  alt={`Miniature ${index + 1}`}
-                  width={90}
-                  height={90}
-                  className="object-cover w-full h-full"
+                    src={photo}
+                    alt={`Miniature ${index + 1}`}
+                    width={90}
+                    height={90}
+                    className="object-cover w-full h-full"
                   />
               </div>
             ))}
         </div>
 
 
-        {/* Boutons flèches pour mobile uniquement */}
+        {/* Btns arrows mobile */}
         <div className="flex justify-between items-center md:hidden">
           <div className="flex space-x-2">
             <Button
@@ -110,7 +112,6 @@ const BoutiqueGalerie: FC<BoutiqueGalerieProps> = ({ photos, loading = false }) 
             {currentPhotoIndex + 1} / {photos.length}
           </span>
         </div>
-
 
 
     </div>

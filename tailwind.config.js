@@ -12,7 +12,7 @@ module.exports = {
         200: "#e2dec6",
         300: "#c6b07e",
         500: "#a6824c",
-        DEFAULT: "#4C352A",
+        DEFAULT: "#5c3a2e",
       },
       secondary: "#F5BAC5",
       gray: {

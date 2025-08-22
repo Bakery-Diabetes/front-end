@@ -14,6 +14,10 @@
   }
 }
 
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
 .link:hover {
   @apply text-primary-500;
 }
@@ -75,4 +79,14 @@
 
 hr {
   @apply bg-primary;
+}
+
+/* Maps */
+
+.leaflet-control-container,
+.leaflet-control-zoom,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  z-index: 999 !important;
+  position: relative !important;
 }

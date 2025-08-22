@@ -15,7 +15,7 @@ export const Box = ({
 }: Props) => {
     return (
         <div className={clsx(
-            "w-1/2 border-2 border-primary bg-primary-beige rounded",
+            "border-2 border-primary bg-primary-beige rounded",
             padding_x,
             padding_y,
             className

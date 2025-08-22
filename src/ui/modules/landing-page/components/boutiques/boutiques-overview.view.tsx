@@ -8,98 +8,115 @@ import { useState, useEffect } from "react";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 // COMPONENTS
 import { Container } from "@/ui/components/container/container";
-import { sanityFetch } from "@/lib/sanity";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { db } from "@/config/firebase-config";
 
 
+  function extractCommuneAdresse(adresses?: string | null): string | null {
+    if (!adresses) return null;
+    const m = adresses.match(/\b(\d{4})\s+([^,]+)/);
+    if (!m) return null;
+    return m[2].trim().toLowerCase().replace(/\s+/g, "-");
+  }
 
-
-
-const capitalize = (str: string) =>
-  str.charAt(0).toUpperCase() + str.slice(1);
-
-type Boutique = {
-  _id: string;
-  name: string;
-  location: {
-    address?: string;
-    commune?: string;
-    lat?: number;
-    lng?: number;
-  };
-  categorie: string[];
-  slug: { current: string };
-  photos?: { asset: { url: string } }[];
+type ShopCard = {
+  uid: string;
+  displayName: string;
+  photoURL?: string | null;
+  adresse?: string;
+  categories?: string[];
+  creation_date?: string;
+  commune?: string;
 };
 
 export const BoutiquesOverviewView = () => {
 
-  const [boutiques, setBoutiques] = useState<Boutique[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await sanityFetch(`*[_type == "boutique" && publie == true] | order(_createdAt desc)[0...4] {
-          _id,
-          name,
-          location {
-            address,
-            commune,
-            lat,
-            lng
-          },
-          categorie,
-          slug,
-          photos[] {
-            asset -> { url }
-          }
-        }`);        
-        setBoutiques(data);
-      } catch (err) {
-        console.error("❌ Erreur de chargement des boutiques :", err);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  const [boutiques, setBoutiques] = useState<ShopCard[]>([]);
+  
   
 
+  useEffect(() => {
+    const fetchLatest = async () => {
+    
+    const q = query(
+      collection(db, "shops"),
+      orderBy("creation_date", "desc"),
+      limit(4)
+    );
 
-  const [index, setIndex] = useState(0);
+    const snap = await getDocs(q);
+    const rows: ShopCard[] = snap.docs.map(d => {
+      const data = d.data() as any;
+      return {
+        uid: d.id,
+        displayName: data.displayName ?? "Boutique",
+        photoURL: data.photoURL ?? undefined,
+        adresse: data.adresse ?? "",
+        categories: data.categories ?? [],
+        creation_date: data.creation_date ?? undefined,
+        commune: extractCommuneAdresse(data.adresse) || "",
+      };
+    });
 
-  const prev = () => setIndex((prev) => (prev > 0 ? prev - 1 : boutiques.length - 1));
-  const next = () => setIndex((prev) => (prev < boutiques.length - 1 ? prev + 1 : 0));
+      setBoutiques(rows);
+    };
+
+    fetchLatest().catch(console.error);
+  }, []);
 
   return (
-    <Container className="bg-primary-beige py-10" noPadding={true}>
-      <div className="flex justify-between items-center mb-6">
+    <Container className="bg-primary-beige py-10 space-y-6" noPadding={true}>
+      <div className="flex justify-between items-center">
         <Typography variant="h2" component="h2">
             Visitez les boutiques
         </Typography>
-        <Button size="medium" variant="secondary" icon={{ icon: BsArrowRight }}>
+        
+      </div>
+
+      {/*==== mobile =====*/}
+      <div className="mx-6 md:hidden">
+        <div className="no-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-4 px-4">
+          {boutiques.map((b) => (
+            <div key={b.uid} className="snap-start min-w-[85%] sm:min-w-[60%]">
+              <CardBoutique
+                uid={b.uid}
+                name={b.displayName}
+                image={b.photoURL || "/assets/placeholder.jpg"}
+                tags={b.categories || []}
+                commune={b.commune || ""}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/*==== desktop =====*/}
+      <div className="hidden md:block">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {boutiques.map((b) => (
+            <CardBoutique
+              key={b.uid}
+              uid={b.uid}
+              name={b.displayName}
+              image={b.photoURL || "/assets/placeholder.jpg"}
+              tags={b.categories || []}
+              commune={b.commune || ""}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="text-center">
+        <Button 
+          baseUrl="/boutiques"
+          size="medium" 
+          variant="secondary" 
+          icon={{ icon: BsArrowRight }}
+        >
             Voir les boutiques
         </Button>
       </div>
-
-      {/* Grid des boutiques */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {boutiques.map((shop) => (
-            <CardBoutique
-              key={shop._id}
-              name={shop.name}
-              commune={shop.location?.commune}
-              tags={shop.categorie?.map(c => capitalize(c))}
-              image={shop.photos?.[0]?.asset?.url ?? "/assets/images/hero.jpg"}
-              slug={shop.slug?.current}
-            />
-        ))}
-      </div>
-
-      {/* Navigation */}
-      <div className="flex justify-end gap-3 mt-6">
-        <Button variant="ico" iconTheme="secondary" iconPosition="right" icon={{ icon: BsArrowLeft }} />
-        <Button variant="ico" iconTheme="secondary" iconPosition="right" icon={{ icon: BsArrowRight }} />
-      </div>
+      
     </Container>
   );
 };

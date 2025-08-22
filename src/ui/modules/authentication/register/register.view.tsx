@@ -1,9 +1,13 @@
+// TYPES
+import { FormsType } from "@/types/forms";
+// COMPONENTS
 import { Container } from "@/ui/components/container/container";
+// DESIGN SYSTEM
 import { Box } from "@/ui/design-system/box/box";
 import { Typography } from "@/ui/design-system/typography/typography";
+// UTILS
 import Link from "next/link";
 import { RegisterForm } from "./register.form";
-import { FormsType } from "@/types/forms";
 
 interface Props {
     form: FormsType;
@@ -12,8 +16,8 @@ interface Props {
 export const RegisterView = ({ form }: Props) => {
 
     return (
-        <Container className="mb-32">
-            <div className="flex items-center justify-center py-96">
+        <Container>
+            <div className="flex items-center justify-center py-32">
                 <Box padding_y="py-5">
                     <div className="flex items-center justify-between">
                         <Typography variant="h3" component="h1">

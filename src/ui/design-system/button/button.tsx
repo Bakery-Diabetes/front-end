@@ -11,7 +11,7 @@ import { LinkType, LinkTypes } from "@/lib/link-type";
 
 interface Props {
     size?: "small" | "medium" | "large";
-    variant?: "primary" | "secondary" | "disabled" | "ico";
+    variant?: "primary" | "secondary" | "disabled" | "ico" | "success" | "danger";
     icon?: IconProps;
     iconTheme?: "primary" | "secondary" | "gray";
     iconPosition?: "left" | "right";
@@ -24,6 +24,7 @@ interface Props {
     fullWidth?: boolean;
     type?: "button" | "submit";
     onClick?: () => void;
+    className?: string;
     
 }
 
@@ -38,10 +39,10 @@ export const Button = ({
     children,
     baseUrl,
     linkType = "internal",
-    action = () => {},
     fullWidth = false,
     type = "button",
     onClick,
+    className = ""
 }: Props) => {
 
     let variantStyles: string = "", sizeStyles: string = "", icoSize: number = 0;
@@ -55,6 +56,12 @@ export const Button = ({
             break;
         case "disabled":
             variantStyles = "bg-gray-400 border border-gray-500 text-gray-600 rounded cursor-not-allowed";
+            break;
+        case "success":
+            variantStyles = "bg-alert-success hover:bg-alert-success/75 text-white rounded";
+            break;
+        case "danger":
+            variantStyles = "bg-alert-danger hover:bg-alert-danger/75 text-white rounded";
             break;
         case "ico":
             if (iconTheme === "primary") { 
@@ -152,10 +159,12 @@ export const Button = ({
                 icoSize,
                 fullWidth && "w-full", 
                 isLoading && "cursor-not-allowed",
-                "relative animate"
+                "relative animate",
+                className
             )} 
             onClick={handleClick} 
             disabled={disabled || isLoading ? true :  false}
+            
         > 
             {buttonContent}
         </button>

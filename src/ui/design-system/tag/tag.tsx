@@ -1,5 +1,6 @@
 // DESIGN SYSTEM
 import { Typography } from "@/ui/design-system/typography/typography";
+// UTILS
 import clsx from "clsx";
 
 interface Props {

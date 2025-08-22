@@ -1,4 +1,4 @@
-// COMPONENT
+// COMPONENTS
 import { Container } from "@/ui/components/container/container";
 import { Layout } from "@/ui/components/layout/layout";
 import { Navigation } from "@/ui/components/navigation/navigation";
@@ -26,9 +26,9 @@ export default function DesignSystem() {
 
                     {/* Typography */}
                     <div className="space-y-2">
-                    <Typography variant="caption2" weight="medium">
-                        Typography
-                    </Typography>
+                        <Typography variant="caption2" weight="medium">
+                            Typography
+                        </Typography>
                     <div className="flex flex-col gap-2 p-5 border border-gray-400 divide-y-2 divide-gray-400 rounded">
                         <div className="py-5 space-y-2">
                             <Typography variant="caption3" weight="medium">

@@ -1,19 +1,19 @@
-import Image from "next/image";
 // DESIGN SYSTEM
 import { Typography } from "@/ui/design-system/typography/typography";
 import { Button } from "@/ui/design-system/button/button";
 import { Tag } from "@/ui/design-system/tag/tag";
 // ICONS
 import { GrLocation } from "react-icons/gr";
+// UTILS
 import Link from "next/link";
-
+import Image from "next/image";
 
 interface CardBoutiqueProps {
     name: string;
-    tags: string[];
+    tags?: string[];
     image: string;
-    slug?: string;
-    commune?: string;
+    uid?: string; 
+    commune: string;
 }
 
 export const CardBoutique = ({ 
@@ -21,12 +21,12 @@ export const CardBoutique = ({
     commune,
     tags = [], 
     image, 
-    slug 
+    uid
 }: CardBoutiqueProps) => {
     return (
         <div className="bg-primary-beige rounded border-2 border-primary hover:bg-primary-100 animate">
             <Image 
-                src={image} 
+                src={image || "/assets/placeholder.jpg"} 
                 alt={name} 
                 width={300} 
                 height={200} 
@@ -51,8 +51,8 @@ export const CardBoutique = ({
                 </div>
 
                 <div>
-                    {slug && (
-                        <Link href={`/boutiques/${slug}`}>
+                    {uid && (
+                        <Link href={`/boutiques/${uid}`}>
                             <Button variant="primary" size="small" fullWidth>
                                 Voir la boutique
                             </Button>

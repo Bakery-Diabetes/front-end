@@ -1,13 +1,12 @@
-// ui/modules/boutique/boutique-detail.container.tsx
-
 import { BoutiqueDetailView } from "./boutique-detail.view";
 import { GetServerSideProps } from "next";
-import { sanityFetch } from "@/lib/sanity";
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from "@/config/firebase-config";
 import { Boutique } from "@/types/boutique-types";
 
 interface Props {
-    boutique: Boutique
-  }
+    boutique: Boutique;
+}
 
 export const BoutiqueDetailContainer = ({ boutique }: Props) => {
   if (!boutique) return <p className="p-4 text-red-500">Boutique introuvable.</p>
@@ -16,40 +15,25 @@ export const BoutiqueDetailContainer = ({ boutique }: Props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug
+  const uid = params?.uid as string;
 
-  const query = `*[_type == \"boutique\" && slug.current == $slug][0] {
-    name,
-    description,
-    location {
-      address,
-      commune,
-      lat,
-      lng
-    },
-    categorie,
-    produitPhare,
-    horaires,
-    email,
-    siteWeb,
-    reseauxSociaux,
-    photos[]{ 
-      asset->{url} 
-    }
-  }`
-
-  const boutique = await sanityFetch(query, { slug })
-
-  if (!boutique) {
-    return {
-      notFound: true,
-    }
+  if (!uid) {
+    return { notFound: true };
   }
 
+  const docRef = doc(firestore, "shops", uid);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return { notFound: true };
+  }
 
   return {
     props: {
-      boutique,
+      boutique: {
+        ...docSnap.data(),
+        uid: docSnap.id,
+      },
     },
-  }
-}
+  };
+};

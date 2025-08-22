@@ -1,4 +1,6 @@
+// TYPES
 import { FormsType } from "@/types/forms";
+// DESIGN SYSTEM
 import { Button } from "@/ui/design-system/button/button";
 import { Input } from "@/ui/design-system/forms/input";
 
@@ -49,7 +51,7 @@ export const RegisterForm = ({ form }: Props) => {
                 isAutocompleted={false}
             />
             <Button isLoading={isLoading} type="submit" fullWidth>
-                S'inscrire
+                S&apos;inscrire
             </Button>
 
         </form>

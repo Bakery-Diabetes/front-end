@@ -1,4 +1,6 @@
+// TYPES
 import { AppLinks } from "@/types/app-links";
+// ICONS
 import { RiFacebookFill, RiInstagramFill, RiYoutubeFill } from "react-icons/ri";
 
 export const footerApplicationLinks: AppLinks[] = [
@@ -27,7 +29,7 @@ export const footerApplicationLinks: AppLinks[] = [
 export const footerUsersLinks: AppLinks[] = [
     {
         label: "Mon espace",
-        baseUrl: "/#",
+        baseUrl: "/mon-espace",
         type: "internal"
     },
     {

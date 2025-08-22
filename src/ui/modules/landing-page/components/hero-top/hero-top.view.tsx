@@ -18,10 +18,9 @@ export const HeroTopView = () => {
                     <Typography 
                         variant="h1" 
                         component="h1" 
-                        className="max-w-lg"
+                        className="max-w-lg "
                     >
-                        <span className="text-secondary">0%</span> de sucre,<br/>
-                        <span className="text-secondary">100%</span> de plaisir!
+                        Faites vous plaisir, sans compromis!
                     </Typography>
                     <Typography 
                         variant="body-lg" 
@@ -34,20 +33,65 @@ export const HeroTopView = () => {
                         vitae erat.
                     </Typography>
                     <div>
-                        <Button baseUrl="">
+                        <Button baseUrl="/about">
                             En savoir plus 
                         </Button>
                     </div>
                 </div>
 
                 <div className="relative order-1 md:order-2">
-                    <Image
-                        src="/assets/images/hero.jpg"
-                        alt="image hero"
-                        width={223}
-                        height={340}
-                        className="w-full rounded"
-                    />
+                    <div className=" rounded border-2 border-primary overflow-hidden">
+                        <div className="aspect-[4/3] md:aspect-[16/10]">
+
+                            <Image
+                                src="/assets/images/hero.jpg"
+                                alt="image hero"
+                                width={223}
+                                height={340}
+                                className="w-full rounded"
+                            />
+                        </div>
+
+                        <Image
+                            src="/assets/svg/ig_friendly.svg"
+                            alt="sticker ig friendly"
+                            width={100}
+                            height={100}
+                            aria-hidden
+                            className="
+                                absolute z-9
+                                right-6 md:-left-2 -translate-x-1/2 -bottom-6 md:top-20
+                                w-28 md:w-40
+                            "
+                        />
+
+                        <Image
+                            src="/assets/svg/croissant.svg"
+                            alt="sticker croissant"
+                            width={100}
+                            height={100}
+                            aria-hidden
+                            className="
+                                absolute z-10
+                                left-3/4 -translate-x-1/2 top-16 md:top-10
+                                w-28 md:w-32
+                            "
+                        />
+
+                        <Image
+                            src="/assets/svg/pain.svg"
+                            alt="sticker pain"
+                            width={100}
+                            height={100}
+                            aria-hidden
+                            className="
+                                absolute z-10
+                                left-1/4 -translate-x-1/2 bottom-10 md:bottom-10
+                                w-28 md:w-32
+                            "
+                        />
+    
+                    </div>
                 </div>
            
             </div>
@@ -55,54 +99,85 @@ export const HeroTopView = () => {
             {/* Sections d’information */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5">
                 <div className="box-hero">
-                    <FaRegStar className="text-4xl text-primary" />
+                    <Image
+                        src="/assets/svg/miseLumiere.svg"
+                        alt="illustration mise en lumière"
+                        width={80}
+                        height={80}
+                        className="inline-block"
+                    />
                     <Typography variant="h5">
                         Mettez en lumière votre boutique
                     </Typography>
                     <Typography variant="body-sm">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </Typography>
-                    <Button 
-                        size="small" 
-                        variant="secondary" 
-                        icon={{ icon: BsArrowRight }}
-                    >
-                        S'inscrire
-                    </Button>
+                    <div>
+                        <Button 
+                            size="small" 
+                            variant="secondary" 
+                            icon={{ icon: BsArrowRight }}
+                            baseUrl="/connexion/inscription"
+                        >
+                            S&apos;inscrire
+                        </Button>    
+                    </div>
+                    
                 </div>
 
                 <div className="box-hero">
-                    <BsShop className="text-4xl text-primary" />
+                    <Image
+                        src="/assets/svg/boutique.svg"
+                        alt="illustration mise en lumière"
+                        width={100}
+                        height={100}
+                        className="inline-block -mt-2"
+                    />
                     <Typography variant="h5">
                         Découvrez une multitude de boutiques à Bruxelles
                     </Typography>
-                    <Typography variant="body-sm">
+                    <Typography variant="body-sm" className="mb-4">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </Typography>
-                    <Button 
-                        size="small" 
-                        variant="secondary" 
-                        icon={{ icon: BsArrowRight }}
-                    >
-                        Les boutiques
-                    </Button>
+
+                    <div>
+                        <Button 
+                            size="small" 
+                            variant="secondary" 
+                            icon={{ icon: BsArrowRight }}
+                            baseUrl="/boutiques"
+                        >
+                            Les boutiques
+                        </Button>    
+                    </div>
+                    
                 </div>
 
                 <div className="box-hero">
-                    <IoNewspaperOutline className="text-4xl text-primary" />
+                    <Image
+                        src="/assets/svg/article.svg"
+                        alt="illustration mise en lumière"
+                        width={80}
+                        height={80}
+                        className="inline-block -mt-2"
+                    />
                     <Typography variant="h5">
                         Restez informé des dernières nouveautés
                     </Typography>
                     <Typography variant="body-sm">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </Typography>
-                    <Button 
-                        size="small" 
-                        variant="secondary" 
-                        icon={{ icon: BsArrowRight }}
-                    >
-                        Notre blog
-                    </Button>
+
+                    <div>
+                        <Button 
+                            size="small" 
+                            variant="secondary" 
+                            icon={{ icon: BsArrowRight }}
+                        >
+                            Notre blog
+                        </Button>    
+                    </div>
+                    
                 </div>
             </div>
         

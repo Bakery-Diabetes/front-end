@@ -1,7 +1,7 @@
-// ui/design-system/forms/Select.tsx
-
-import { FC, ChangeEvent } from "react";
+// UTILS
 import clsx from "clsx";
+import { FC, ChangeEvent } from "react";
+// ICONS
 import { IoIosArrowDown } from "react-icons/io";
 
 interface Option {

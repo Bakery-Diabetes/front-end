@@ -1,61 +1,53 @@
-import { Typography } from "@/ui/design-system/typography/typography";
-import clsx from "clsx";
 import { useRouter } from "next/router";
-import { RiHome3Line } from "react-icons/ri";
-import { v4 as uuidv4 } from "uuid";
 import { Container } from "../container/container";
+import { Typography } from "@/ui/design-system/typography/typography";
+import { RiHome3Line } from "react-icons/ri";
 import Link from "next/link";
+import clsx from "clsx";
 
-export const Breadcrumbs = () => {
+// ...imports identiques
+type BreadcrumbsProps = { lastLabel?: string };
 
-    const router = useRouter();
-    const asPath = router.asPath;
-    const segments = asPath.split("/");
-    const lastSegment = segments[segments.length - 1];
-    segments[0] = "accueil";
+export const Breadcrumbs = ({ lastLabel }: BreadcrumbsProps) => {
+  const router = useRouter();
+  const asPath = router.asPath.split("?")[0].split("#")[0];
+  const parts = asPath.split("/").filter(Boolean); // ["boutique","<uid-ou-slug>"]
+  const segments = ["accueil", ...parts];
+  const lastIndex = segments.length - 1;
 
-    const view = segments.map((path, index) => (
-        <div key={uuidv4()}>
-            <Link 
-                href={
-                    index > 0 
-                        ? `${segments.slice(1, index + 1).join("/")}` 
-                        : "/"
-                }
-            >
-            <Typography
-                variant="caption3"
-                component="span"
-                className={clsx(
-                    path !== lastSegment ? "text-primary-300" : "text-primary",
-                    "capitalize hover:text-secondary animate"
-                )}
-            >
-                {path !== "accueil" ? (
-                    path.replace(/-/g, " ") 
-                ) : (
-                    <RiHome3Line className="inline -mt-1" />
-                )}
-            </Typography>
-            {
-                path !== lastSegment && (
-                    <Typography 
-                        variant="caption2" 
-                        component="span" 
-                        className="ml-2 text-primary-300"
-                    >
-                        /
-                    </Typography>
-                )
-            }
-            </Link>
-        </div>
-    ))
+  return (
+    <Container className="flex items-center py-2">
+      {segments.map((seg, i) => {
+        const isLast = i === lastIndex;
+        const href = i === 0 ? "/" : `/${segments.slice(1, i + 1).join("/")}`;
+        const defaultLabel =
+          seg === "accueil" ? "" : decodeURIComponent(seg).replace(/-/g, " ");
+        const label = isLast && lastLabel ? lastLabel : defaultLabel;
 
+        const crumb = (
+          <Typography
+            variant="caption3"
+            component="span"
+            className={clsx(
+              "capitalize",
+              isLast ? "text-primary" : "text-primary-300 hover:text-secondary animate"
+            )}
+          >
+            {seg === "accueil" ? <RiHome3Line className="inline -mt-1" /> : label}
+          </Typography>
+        );
 
-    return (
-        <Container className="flex items-center gap-2 py-2">
-            {view}
-        </Container>
-    )
-}
+        return (
+          <div key={`${i}-${href}`} className="flex items-center">
+            {isLast ? crumb : <Link href={href}>{crumb}</Link>}
+            {!isLast && (
+              <Typography variant="caption2" component="span" className="mx-2 text-primary-300">
+                /
+              </Typography>
+            )}
+          </div>
+        );
+      })}
+    </Container>
+  );
+};
