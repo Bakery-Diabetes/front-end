@@ -11,7 +11,9 @@
 
 # next.js
 /.next/
-/out/
+out/
+# or: /out/ 
+#/out/
 
 # production
 /build
@@ -25,11 +27,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# environment files
+.env
+.env.*
+!.env.example
 .env*.local
 
 # vercel
 .vercel
+
+# firebase (local state)
+.firebase/
 
 # typescript
 *.tsbuildinfo
