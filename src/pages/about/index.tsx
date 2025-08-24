@@ -103,7 +103,7 @@ export default function About() {
                 className="leading-loose"
               >
                 Bakery & Diabetes est né d’une histoire personnelle. Hamza
-                Senhaji l'initiateur du projet a grandi dans une famille où le
+                Senhaji l&apos;initiateur du projet a grandi dans une famille où le
                 diabète faisait partie du quotidien. Entre les douceurs
                 partagées lors des petits-déjeuners en famille et les
                 contraintes imposées par la maladie, il a pris conscience très
