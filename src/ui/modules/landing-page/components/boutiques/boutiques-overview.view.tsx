@@ -74,7 +74,7 @@ export const BoutiquesOverviewView = () => {
       </div>
 
       {/*==== mobile =====*/}
-      <div className="mx-6 md:hidden">
+      <div className="md:hidden">
         <div className="no-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-4 px-4">
           {boutiques.map((b) => (
             <div key={b.uid} className="snap-start min-w-[85%] sm:min-w-[60%]">

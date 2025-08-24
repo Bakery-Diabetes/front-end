@@ -16,10 +16,10 @@ interface Props {
 export const ForgetPasswordView = ({ form }: Props) => {
     return (
         <Container>
-            <div className="flex items-center justify-center py-32">
-                <Box padding_y="py-5">
+            <div className="min-h-screen flex items-center justify-center py-10 md:py-24">
+                <Box padding_y="py-6">
                     <div className="">
-                        <Typography variant="h3" component="h1">
+                        <Typography variant="h3" component="h3">
                             Mot de passe oublié ?
                         </Typography>
 

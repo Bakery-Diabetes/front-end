@@ -78,7 +78,7 @@ export const Navigation = () => {
                         component="div" 
                         className="flex items-center gap-7"
                     >
-                        <ActiveLink href="/design-system" className="nav-link">Design System</ActiveLink>
+                        {/* <ActiveLink href="/design-system" className="nav-link">Design System</ActiveLink> */}
                         <ActiveLink href="/about" className="nav-link">À Propos</ActiveLink>
                         <ActiveLink href="/boutiques" className="nav-link">Boutiques</ActiveLink>
                         <ActiveLink href="/contact" className="nav-link">Contact</ActiveLink>
@@ -131,7 +131,7 @@ export const Navigation = () => {
                                 component="div" 
                                 className="flex flex-col gap-7"
                             >
-                                <ActiveLink href="/design-system" className="nav-link" onClick={() => setOpen(false)}>Design System</ActiveLink>
+                                {/* <ActiveLink href="/design-system" className="nav-link" onClick={() => setOpen(false)}>Design System</ActiveLink> */}
                                 <ActiveLink href="/about" className="nav-link" onClick={() => setOpen(false)}>À Propos</ActiveLink>
                                 <ActiveLink href="/boutiques" className="nav-link" onClick={() => setOpen(false)}>Boutiques</ActiveLink>
                                 <ActiveLink href="/contact" className="nav-link" onClick={() => setOpen(false)}>Contact</ActiveLink>

@@ -1,6 +1,6 @@
 import { BoutiqueDetailView } from "./boutique-detail.view";
 import { GetServerSideProps } from "next";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, Timestamp } from "firebase/firestore";
 import { firestore } from "@/config/firebase-config";
 import { Boutique } from "@/types/boutique-types";
 
@@ -28,11 +28,21 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return { notFound: true };
   }
 
+  const data = docSnap.data();
+
+  const creation_date =
+    data.creation_date instanceof Timestamp
+      ? data.creation_date.toDate().toISOString()
+      : data.creation_date instanceof Date
+      ? data.creation_date.toISOString()
+      : data.creation_date ?? null;
+
   return {
     props: {
       boutique: {
         ...docSnap.data(),
         uid: docSnap.id,
+        creation_date
       },
     },
   };

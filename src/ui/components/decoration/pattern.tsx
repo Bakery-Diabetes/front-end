@@ -1,35 +1,49 @@
 import clsx from "clsx";
 import { Container } from "../container/container";
+import Image from "next/image";
 
 type Props = {
   src?: string;
   heightClass?: string;
   repeat?: "repeat" | "repeat-x" | "repeat-y" | "no-repeat";
   className?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 };
 
 export function Pattern({
   src = "/assets/svg/pattern.svg",
-  heightClass = "h-32 md:h-28",
+  heightClass,
   repeat = "repeat-x",
   className,
+  imageSrc,
+  imageAlt = "",
 }: Props) {
   return (
-    <Container noPadding={true}>
+    <Container noPadding={true} className="h-full">
         <div
-        aria-hidden="true"
-        className={clsx(
-            "w-full rounded-2xl bg-center",
-            "bg-[length:auto_100%]",
+          aria-hidden="true"
+          className={clsx(
+            "w-full h-full bg-center flex items-center justify-center rounded",
             repeat === "repeat-x" && "bg-repeat-x",
             repeat === "repeat-y" && "bg-repeat-y",
             repeat === "repeat" && "bg-repeat",
             repeat === "no-repeat" && "bg-no-repeat",
-            heightClass,
+            heightClass ?? "h-full",
             className
-        )}
-        style={{ backgroundImage: `url('${src}')` }}
-        />
+          )}
+          style={{ backgroundImage: `url('${src}')` }}
+        >
+          {imageSrc && (
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              className="max-w-[80%] max-h-[80%] object-contain justify-center mx-auto"
+              width={300}
+              height={300}
+            />
+          )}
+      </div>
     </Container>
   );
 }

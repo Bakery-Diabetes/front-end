@@ -15,8 +15,7 @@ export function FaqApercu() {
         <div className="md:col-span-5 flex flex-col gap-5">
           <Typography variant="h2" component="h2">FAQs</Typography>
           <Typography variant="body-base" component="p">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in
-            eros elementum tristique.
+            Les réponses aux questions les plus courantes, au même endroit.
           </Typography>
 
           <Button 
@@ -43,12 +42,11 @@ export function FaqApercu() {
         draggable={false}
         aria-hidden
         className="
-            pointer-events-none select-none
-            absolute left-4 md:left-12
-            -bottom-14 sm:-bottom-10 md:-bottom-14 
-            w-72 md:w-96 lg:w-[28rem]
-            z-20
-        "
+          pointer-events-none select-none
+          absolute left-4 md:left-12
+          -bottom-14 sm:-bottom-10 md:-bottom-14 
+          w-72 md:w-96 lg:w-[28rem]
+          z-20"
       />
       
     </Container>

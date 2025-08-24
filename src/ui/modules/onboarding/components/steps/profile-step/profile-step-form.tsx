@@ -39,7 +39,7 @@ export const ProfileStepForm = ({ form }: Props) => {
             <Input 
                 label="Nom de la boutique"
                 isLoading={isLoading}
-                placeholder="Maison Lavoisier"
+                placeholder="indique le nom de ta boutique"
                 type="text"
                 register={register}
                 errors={errors}

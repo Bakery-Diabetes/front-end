@@ -43,7 +43,7 @@ export const RegisterForm = ({ form }: Props) => {
             />
             <Input
                 isLoading={isLoading}
-                placeholder={"Facebook, Youtube, ..."}
+                placeholder={"Comment as-tu entendu parler de nous ?"}
                 register={register}
                 errors={errors} 
                 errorMsg={"Tu dois renseigner ce champ"}

@@ -27,10 +27,8 @@ export const HeroTopView = () => {
                         component="p" 
                         className="max-w-xl"
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        varius enim in eros elementum tristique. Duis cursus, mi quis
-                        viverra ornare, eros dolor interdum nulla, ut commodo diam libero
-                        vitae erat.
+                        Prenez soin de vous sans renoncer au plaisir.
+                        Parce qu’avoir un diabète ne devrait jamais signifier se priver, mais au contraire profiter autrement.
                     </Typography>
                     <div>
                         <Button baseUrl="/about">
@@ -73,7 +71,7 @@ export const HeroTopView = () => {
                             aria-hidden
                             className="
                                 absolute z-10
-                                left-3/4 -translate-x-1/2 top-16 md:top-10
+                                left-3/4 -translate-x-1/2 top-10 md:top-10
                                 w-28 md:w-32
                             "
                         />
@@ -110,7 +108,7 @@ export const HeroTopView = () => {
                         Mettez en lumière votre boutique
                     </Typography>
                     <Typography variant="body-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Inscrivez votre commerce et gagnez en visibilité. Profil, photos et horaires en quelques minutes.
                     </Typography>
                     <div>
                         <Button 
@@ -137,7 +135,7 @@ export const HeroTopView = () => {
                         Découvrez une multitude de boutiques à Bruxelles
                     </Typography>
                     <Typography variant="body-sm" className="mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Trouvez des adresses près de chez vous. Horaires, itinéraires et réseaux sociaux.
                     </Typography>
 
                     <div>
@@ -165,7 +163,7 @@ export const HeroTopView = () => {
                         Restez informé des dernières nouveautés
                     </Typography>
                     <Typography variant="body-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Actus, inspirations et sélections du moment à Bruxelles.
                     </Typography>
 
                     <div>

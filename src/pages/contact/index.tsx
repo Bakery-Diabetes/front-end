@@ -32,7 +32,7 @@ export default function Contact() {
                     size="large" 
                     baseUrl="mailto:hamzasenhaji0@gmail.com"
                 >
-                    hello@jbakeryanddiabetes.be
+                    hello@bakeryanddiabetes.be
                   </Button>
               </div>
 

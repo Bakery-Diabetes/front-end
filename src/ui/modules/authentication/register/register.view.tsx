@@ -17,9 +17,9 @@ export const RegisterView = ({ form }: Props) => {
 
     return (
         <Container>
-            <div className="flex items-center justify-center py-32">
-                <Box padding_y="py-5">
-                    <div className="flex items-center justify-between">
+            <div className="min-h-screen flex items-center justify-center py-10 md:py-24">
+                <Box padding_y="py-6">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-6 ">
                         <Typography variant="h3" component="h1">
                             Inscription
                         </Typography>

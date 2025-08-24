@@ -22,7 +22,7 @@ const COMMUNES = [
   "anderlecht",
   "auderghem",
   "berchem-sainte-agathe",
-  "bruxelles-ville",
+  "bruxelles",
   "etterbeek",
   "evere",
   "forest",
@@ -97,7 +97,7 @@ export default function FilterBar({ allBoutiques, onFilter, setShowMap, showMap 
   
 
   return (
-    <div className="sticky top-0 z-[1000] bg-primary-beige border-b border-primary pb-4 py-3">
+    <div className="sticky top-0 z-10 bg-primary-beige border-b border-primary pb-4 py-3">
 
       {/* Toggle mobile */}
       <div className="flex justify-between items-center md:hidden mb-6">
