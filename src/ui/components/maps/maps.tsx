@@ -45,6 +45,7 @@ export default function Map({ boutiques }: { boutiques: Boutique[] }) {
         fullscreenControl: false,
         zoomControl: true,
         clickableIcons: false,
+        gestureHandling: "greedy",
       }}
     >
       {boutiques.map((boutique, i) => 
@@ -74,7 +75,7 @@ export default function Map({ boutiques }: { boutiques: Boutique[] }) {
 
                   <Typography variant="h6" component="h6">{boutique.displayName}</Typography>
                   <div className="flex gap-1 mt-1">
-                    <GrLocation className="text-secondary text-2xl" />
+                    <GrLocation className="text-secondary text-xl" />
                     <Typography 
                       variant='caption4' 
                       theme='gray' 
@@ -87,6 +88,7 @@ export default function Map({ boutiques }: { boutiques: Boutique[] }) {
                   <Link href={`/boutiques/${boutique.uid}`}>
                     <Button 
                       variant="primary" 
+                      size="small"
                       className="mt-2 w-full" 
                     >
                       Voir la boutique

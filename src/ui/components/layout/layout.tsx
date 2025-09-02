@@ -8,6 +8,7 @@ import { Navigation } from "../navigation/navigation";
 import { UserAccountNavigation } from "../navigation/user-account-navigation";
 import { Session } from "../session/session";
 import GoogleMapsProvider from "@/context/googleMapsProvider";
+import { ScrollTop } from "../scrollTop/scrollTop";
 
 interface Props {
   children: React.ReactNode;
@@ -43,7 +44,8 @@ export const Layout = ({
             <main>{children}</main>
           )}
         </Container>
-
+        
+        <ScrollTop  />
         <Footer />
       </GoogleMapsProvider>
     </Session>

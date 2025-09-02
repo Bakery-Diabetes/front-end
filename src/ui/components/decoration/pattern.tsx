@@ -24,7 +24,7 @@ export function Pattern({
         <div
           aria-hidden="true"
           className={clsx(
-            "w-full h-full bg-center flex items-center justify-center rounded",
+            "w-full bg-center flex items-center justify-center rounded",
             repeat === "repeat-x" && "bg-repeat-x",
             repeat === "repeat-y" && "bg-repeat-y",
             repeat === "repeat" && "bg-repeat",

@@ -9,7 +9,11 @@ export const LandingPageView = () => {
         <>
             <HeroTopView />
             <BoutiquesOverviewView />
-            <Pattern />
+            <Pattern 
+                src="/assets/svg/pattern.svg"
+                repeat="repeat-x"
+                className="h-32 md:h-28 w-full"
+            />
             <FaqApercu />
         </>
     )

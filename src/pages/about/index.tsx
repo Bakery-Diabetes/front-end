@@ -37,6 +37,7 @@ export default function About() {
                 fill
                 className="object-cover"
               />
+              
               <div className="absolute inset-0 flex items-center justify-center">
                 <button>
                   <FaPlay size={60} color="white" />
