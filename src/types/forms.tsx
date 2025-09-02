@@ -10,6 +10,7 @@ export interface FormsType {
     handleSubmit: any;
     setValue?: any;
     trigger?: any;
+    
 
 }
 
@@ -34,6 +35,10 @@ export interface OnboardingProfileFormFieldsType {
     description: string;
     adresse: string;
     categories: string[];
+    location?: {
+        lat: number;
+        lng: number;
+    };
 }
 
 export interface ShopProfileFormFieldsType {
@@ -49,4 +54,8 @@ export interface ShopProfileFormFieldsType {
     adresse: string;
     website?: string;
     horaires?: Horaire[];
+    location?: {
+        lat: number;
+        lng: number;
+    };
 }

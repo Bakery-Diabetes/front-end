@@ -38,49 +38,49 @@ export const Typography = ({
 
     switch (variant) {
         case "display":
-            variantStyles = "text-8xl";
+            variantStyles = "text-6xl md:text-8xl";
             break;
         case "h1":
-            variantStyles = "text-7xl";
+            variantStyles = "text-5xl md:text-7xl";
             break;
         case "h2":
-            variantStyles = "text-6xl";
+            variantStyles = "text-4xl md:text-6xl";
             break;
         case "h3": // default
-            variantStyles = "text-5xl";
+            variantStyles = "text-3xl md:text-5xl";
             break;
         case "h4":
-            variantStyles = "text-4xl";
+            variantStyles = "text-2xl md:text-4xl";
             break;
         case "h5":
-            variantStyles = "text-3xl";
+            variantStyles = "text-xl md:text-3xl";
             break;
         case "h6":
-            variantStyles = "text-2xl";
+            variantStyles = "text-lg md:text-2xl";
             break;
         case "lead":
-            variantStyles = "text-xl";
+            variantStyles = "text-lg md:text-xl";
             break;
         case "body-lg":
-            variantStyles = "text-lg";
+            variantStyles = "text-base md:text-lg";
             break;
         case "body-base":
-            variantStyles = "text-base";
+            variantStyles = "text-sm md:text-base";
             break;
         case "body-sm":
-            variantStyles = "text-sm";
+            variantStyles = "text-xs md:text-sm";
             break;
         case "caption1":
-            variantStyles = "text-caption1";
+            variantStyles = "text-base md:text-caption1";
             break;
         case "caption2":
-            variantStyles = "text-caption2";
+            variantStyles = "text-sm md:text-caption2";
             break;
         case "caption3":
-            variantStyles = "text-caption3";
+            variantStyles = "text-sm md:text-caption3";
             break;
         case "caption4":
-            variantStyles = "text-caption4";
+            variantStyles = "text-xs md:text-caption4";
             break;
     }
 

@@ -71,13 +71,13 @@ export const footerSocialLinks: AppLinks[] = [
     },
     {
         label: "Facebook",
-        baseUrl: "https://www.facebook.com/RetroFresh1980s/videos/565249620527878/",
+        baseUrl: "https://www.facebook.com/",
         type: "external",
         icon: RiFacebookFill,
     },
     {
         label: "Instagram",
-        baseUrl: "/https://www.youtube.com/",
+        baseUrl: "https://www.instagram.com/",
         type: "external",
         icon: RiInstagramFill,
     },

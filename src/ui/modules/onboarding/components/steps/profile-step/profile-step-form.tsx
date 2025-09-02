@@ -9,7 +9,6 @@ const CATEGORIES = ["Boulangerie","Pâtisserie"] as const;
 
 interface Props {
     form: FormsType;
-
 }
 
 export const ProfileStepForm = ({ form }: Props) => {
@@ -18,16 +17,21 @@ export const ProfileStepForm = ({ form }: Props) => {
 
     const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
-        libraries: ["places"], 
-        id: "gmaps-places", 
-    });
 
     const onPlaceChanged = () => {
         const place = autocompleteRef.current?.getPlace();
+        if (!place) return;
+
         const addr = place?.formatted_address ?? "";
+        const lat = place?.geometry?.location?.lat() ?? "";
+        const lng = place?.geometry?.location?.lng() ?? "";
+
         setValue("adresse", addr, { shouldDirty: true, shouldValidate: true });
+
+        if (lat && lng) {
+            setValue("location", { lat, lng }, { shouldDirty: true, shouldValidate: true });
+        };
+
         trigger("adresse");
     };
 
@@ -90,7 +94,7 @@ export const ProfileStepForm = ({ form }: Props) => {
                 </Typography>
                 
 
-                {isLoaded ? (
+              
                     <Autocomplete
                         onLoad={(ac) => (autocompleteRef.current = ac)}
                         onPlaceChanged={onPlaceChanged}
@@ -113,18 +117,7 @@ export const ProfileStepForm = ({ form }: Props) => {
                             autoComplete="off"
                         />
                     </Autocomplete>
-                ) : (
-                    <input
-                        {...register("adresse", { required: "Adresse requise" })}
-                        id="adresse"
-                        name="adresse"
-                        type="text"
-                        placeholder="Chargement de l’autocomplétion…"
-                        className="w-full p-4 rounded border border-primary opacity-60"
-                        disabled
-                    />
-                )}
-
+                    
                 {errors.adresse && (
                 <p className="text-alert-danger text-sm">
                     {String(errors.adresse.message)}

@@ -28,4 +28,8 @@ export interface ShopDocument {
     website?: string; 
     horaires?: Horaire[];
     categories?: string[];
+    location?: {
+        lat: number;
+        lng: number;
+    };
 }

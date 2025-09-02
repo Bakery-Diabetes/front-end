@@ -31,7 +31,6 @@ export const AvatarStep = ({
     
     const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        console.log("file", file);
         if (file) {
             setSelectedImage(file);    
 

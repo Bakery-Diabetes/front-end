@@ -4,7 +4,7 @@ import { Button } from "@/ui/design-system/button/button";
 import { Input } from "@/ui/design-system/forms/input";
 import { Textarea } from "@/ui/design-system/forms/textarea";
 import { Typography } from "@/ui/design-system/typography/typography";
-import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 import { useRef } from "react";
 
 
@@ -39,18 +39,22 @@ export const ProfileForm = ({
     const { register, errors, isLoading, onSubmit, handleSubmit, setValue, trigger } = form;
 
     const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
-        libraries: ["places"],
-        id: "gmaps-places",
-        
-    });
 
     const onPlaceChanged = () => {
         const place = autocompleteRef.current?.getPlace();
+        if (!place) return;
+
         const addr = place?.formatted_address ?? "";
+        const lat = place?.geometry?.location?.lat() ?? "";
+        const lng = place?.geometry?.location?.lng() ?? "";
+
         setValue("adresse", addr, { shouldDirty: true, shouldValidate: true });
-        trigger?.("adresse");
+
+        if (lat && lng) {
+            setValue("location", { lat, lng }, { shouldDirty: true, shouldValidate: true });
+        };
+
+        trigger("adresse");
     };
 
     return (
@@ -87,35 +91,23 @@ export const ProfileForm = ({
                             Adresse
                         </Typography>
 
-                        {isLoaded ? (
-                            <Autocomplete
-                                onLoad={(ac) => (autocompleteRef.current = ac)}
-                                onPlaceChanged={onPlaceChanged}
-                                options={{ types: ["address"], componentRestrictions: { country: "be" } }}
-                            >
-                                <input
-                                    {...register("adresse", { required: false })}
-                                    id="adresse"
-                                    name="adresse"
-                                    type="text"
-                                    placeholder="Ex : Rue Royale 10, 1000 Bruxelles"
-                                    className="w-full p-4 rounded border border-primary bg-primary-beige focus:outline-none"
-                                    autoComplete="off"
-                                    onKeyDown={(e) => { if (e.key === "Enter") e.preventDefault(); }}
-                                    disabled={isLoading}
-                                />
-                            </Autocomplete>
-                        ) : (
+                        <Autocomplete
+                            onLoad={(ac) => (autocompleteRef.current = ac)}
+                            onPlaceChanged={onPlaceChanged}
+                            options={{ types: ["address"], componentRestrictions: { country: "be" } }}
+                        >
                             <input
                                 {...register("adresse", { required: false })}
                                 id="adresse"
                                 name="adresse"
                                 type="text"
-                                placeholder="Chargement de l’autocomplétion…"
-                                className="w-full p-4 rounded border border-primary opacity-60"
-                                disabled
+                                placeholder="Ex : Rue Royale 10, 1000 Bruxelles"
+                                className="w-full p-4 rounded border border-primary bg-primary-beige focus:outline-none"
+                                autoComplete="off"
+                                onKeyDown={(e) => { if (e.key === "Enter") e.preventDefault(); }}
+                                disabled={isLoading}
                             />
-                        )}
+                        </Autocomplete>
 
                         {errors.adresse && (
                             <Typography variant="caption4" component="div" theme="danger">

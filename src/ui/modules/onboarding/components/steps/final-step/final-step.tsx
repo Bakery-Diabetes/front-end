@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef } from "react";
 import ReactCanvasConfetti from 'react-canvas-confetti';
 import { firesoreUpdateDocument } from "@/api/firestore";
 import { toast } from "react-toastify";
+import { LogoSecondary } from "@/ui/design-system/logo/logoSecondary";
 
 
 export const FinalStep = ({ isFinalStep}: BaseComponentProps) => {
@@ -16,7 +17,7 @@ export const FinalStep = ({ isFinalStep}: BaseComponentProps) => {
     const { authUser, reloadAuthUserData } = useAuth();
     const { value: isLoading, toggle } = useToggle();
 
-    // animation confetti
+    //==== animation confetti ====//
     const refAnimationInstance = useRef<((opts: any) => void) | null>(null);
 
     const getInstance = useCallback((instance: any) => {
@@ -103,7 +104,7 @@ export const FinalStep = ({ isFinalStep}: BaseComponentProps) => {
                         <div className="relative z-10 flex items-center h-full py-10">
                             <div className="w-full max-w-xl mx-auto space-y-5 pb-4.5">
                                 <div className="flex justify-center">
-                                    <Logo size="large" />
+                                    <LogoSecondary size="large" />
                                 </div>
                                 <Typography variant="h1" component="h1" className="text-center">
                                     Félicitations!

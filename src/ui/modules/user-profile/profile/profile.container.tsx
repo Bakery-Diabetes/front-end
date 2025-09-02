@@ -39,7 +39,8 @@ export const ProfileContainer = () => {
     adresse, 
     website, 
     horaires, 
-    categories
+    categories,
+    location
   } = authUser.shopDocument;
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
@@ -59,8 +60,9 @@ export const ProfileContainer = () => {
       | "website"
       | "horaires"
       | "categories"
+      | "location"
     )[] = [
-      "displayName", "must", "description", "instagram", "facebook", "tiktok", "phoneNumber", "adresse", "website", "horaires", "categories"];
+      "displayName", "must", "description", "instagram", "facebook", "tiktok", "phoneNumber", "adresse", "website", "horaires", "categories", "location"];
 
     for (const field of fieldsToUpdate ) {
       setValue(field, authUser.shopDocument[field]);
@@ -69,7 +71,6 @@ export const ProfileContainer = () => {
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log("file", file);
     
     if (file) {
         setSelectedImage(file);    
@@ -223,7 +224,8 @@ export const ProfileContainer = () => {
         website != formData.website ||
         horaires !== formData.horaires ||
         categories !== formData.categories ||
-        adresse !== formData.adresse
+        adresse !== formData.adresse ||
+        location !== formData.location
       ) {
 
         if (

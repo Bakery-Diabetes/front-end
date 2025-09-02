@@ -32,5 +32,10 @@ export interface Boutique {
   horaires?: Horaire[];
   onboardingIsCompleted?: boolean;
   creation_date?: string;
+  location?: {
+    lat: number;
+    lng: number;
+    commune?: string;
+  }
 }
   

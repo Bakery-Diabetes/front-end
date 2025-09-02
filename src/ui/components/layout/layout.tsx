@@ -7,6 +7,7 @@ import { Footer } from "../navigation/Footer";
 import { Navigation } from "../navigation/navigation";
 import { UserAccountNavigation } from "../navigation/user-account-navigation";
 import { Session } from "../session/session";
+import GoogleMapsProvider from "@/context/googleMapsProvider";
 
 interface Props {
   children: React.ReactNode;
@@ -25,24 +26,26 @@ export const Layout = ({
 }: Props) => {
   return (
     <Session sessionStatus={sessionStatus}>
-      <Navigation />
-      {isDisplayBreadcrumbs && <Breadcrumbs lastLabel={breadcrumbLastLabel} />}
+      <GoogleMapsProvider>
+        <Navigation />
+        {isDisplayBreadcrumbs && <Breadcrumbs lastLabel={breadcrumbLastLabel} />}
 
-      <Container className="mb-14">
-        {withSidebar ? (
-          <div className="lg:grid lg:grid-cols-12 lg:gap-7">
-            <aside className="hidden lg:block lg:col-span-3">
-              <UserAccountNavigation />
-            </aside>
+        <Container className="mb-14">
+          {withSidebar ? (
+            <div className="lg:grid lg:grid-cols-12 lg:gap-7">
+              <aside className="hidden lg:block lg:col-span-3">
+                <UserAccountNavigation />
+              </aside>
 
-            <main className="col-span-12 lg:col-span-9">{children}</main>
-          </div>
-        ) : (
-          <main>{children}</main>
-        )}
-      </Container>
+              <main className="col-span-12 lg:col-span-9">{children}</main>
+            </div>
+          ) : (
+            <main>{children}</main>
+          )}
+        </Container>
 
-      <Footer />
+        <Footer />
+      </GoogleMapsProvider>
     </Session>
   );
 };

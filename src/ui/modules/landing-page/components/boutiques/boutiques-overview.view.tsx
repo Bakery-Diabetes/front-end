@@ -81,7 +81,7 @@ export const BoutiquesOverviewView = () => {
               <CardBoutique
                 uid={b.uid}
                 name={b.displayName}
-                image={b.photoURL || "/assets/placeholder.jpg"}
+                image={b.photoURL || "https://placehold.co/600x400"}
                 tags={b.categories || []}
                 commune={b.commune || ""}
               />
@@ -98,7 +98,7 @@ export const BoutiquesOverviewView = () => {
               key={b.uid}
               uid={b.uid}
               name={b.displayName}
-              image={b.photoURL || "/assets/placeholder.jpg"}
+              image={b.photoURL || "https://placehold.co/600x400"}
               tags={b.categories || []}
               commune={b.commune || ""}
             />

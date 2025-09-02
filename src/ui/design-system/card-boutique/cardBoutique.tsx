@@ -26,7 +26,7 @@ export const CardBoutique = ({
     return (
         <div className="bg-primary-beige rounded border-2 border-primary hover:bg-primary-100 animate">
             <Image 
-                src={image || "/assets/placeholder.jpg"} 
+                src={image || "https://placehold.co/600x400"} 
                 alt={name} 
                 width={300} 
                 height={200} 

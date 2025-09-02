@@ -23,7 +23,6 @@ export const ProfileStep = ({
 }: BaseComponentProps) => {
 
     const { authUser } = useAuth();
-    console.log('authUser', authUser);
 
     const {value: isLoading, setValue: setLoading} = useToggle();
 
@@ -38,11 +37,11 @@ export const ProfileStep = ({
         
     } = useForm<OnboardingProfileFormFieldsType>();
 
-    const { displayName, description, categories, adresse } = authUser.shopDocument;
+    const { displayName, description, categories, adresse, location } = authUser.shopDocument;
 
     useEffect(() => {
-        type key = "displayName" | "description" | "categories" | "adresse";
-        const fieldsToUpdate: key[] = ["displayName", "description", "categories", "adresse"];
+        type key = "displayName" | "description" | "categories" | "adresse" | "location";
+        const fieldsToUpdate: key[] = ["displayName", "description", "categories", "adresse", "location"];
 
         for (const field of fieldsToUpdate) {
             const raw = (authUser.shopDocument as Record<key, string | string[] | undefined>)[field];
@@ -88,7 +87,8 @@ export const ProfileStep = ({
             displayName !== formData.displayName ||
             description !== formData.description ||
             categories !== formData.categories ||
-            adresse !== formData.adresse
+            adresse !== formData.adresse ||
+            location !== formData.location
         ) {
             if (
                 displayName !== formData.displayName || authUser.displayName !== formData.displayName

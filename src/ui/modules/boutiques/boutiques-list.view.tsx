@@ -45,7 +45,7 @@ export const BoutiquesListView = ({ boutiques, filtered, onFilter }: Props) => {
         {showMap ? (
             <div className="mt-6">
                 <Map 
-                    //boutiques={filtered}
+                    boutiques={filtered}
                 />
             </div>
         ) : filtered.length > 0 ? (
@@ -55,7 +55,7 @@ export const BoutiquesListView = ({ boutiques, filtered, onFilter }: Props) => {
                         key={boutique.uid ?? boutique.displayName}
                         uid={boutique.uid}
                         name={boutique.displayName ?? "Boutique"}
-                        image={boutique.photoURL ?? "/assets/placeholder.jpg"}
+                        image={boutique.photoURL ?? "https://placehold.co/600x400"}
                         tags={boutique.categories ?? []}
                         commune={extractCommune(boutique.adresse)}
                     />
