@@ -29,20 +29,13 @@ export default function About() {
             </div>
 
             {/* Video */}
-            <div className="aspect-video rounded overflow-hidden relative w-full">
-              {/* @video ici */}
-              <Image
-                src="/assets/images/hero.jpg"
-                alt="Vidéo"
-                fill
-                className="object-cover"
+            <div className="rounded overflow-hidden relative w-full">
+              <video
+                src="/assets/videos/presentation.mp4"
+                className="object-cover w-full h-full"
+                controls
               />
               
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button>
-                  <FaPlay size={60} color="white" />
-                </button>
-              </div>
             </div>
           </div>
 
@@ -60,7 +53,7 @@ export default function About() {
                 Le projet
               </Typography>
               <Typography
-                variant="body-base"
+                variant="body-lg"
                 component="p"
                 className="leading-loose"
               >
@@ -99,7 +92,7 @@ export default function About() {
                 Histoire et valeurs
               </Typography>
               <Typography
-                variant="body-base"
+                variant="body-lg"
                 component="p"
                 className="leading-loose"
               >

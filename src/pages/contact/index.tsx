@@ -4,6 +4,7 @@ import { Layout } from "@/ui/components/layout/layout";
 import { Seo } from "@/ui/components/seo/seo";
 import { Button } from "@/ui/design-system/button/button";
 import { Typography } from "@/ui/design-system/typography/typography";
+import Image from "next/image";
 
 export default function Contact() {
   return (
@@ -40,6 +41,20 @@ export default function Contact() {
 
             
           </Container>
+          <Image
+              src="/assets/svg/dalida.svg"
+              alt="dalida"
+              width={420}
+              height={320}
+              draggable={false}
+              aria-hidden
+              className="
+              pointer-events-none select-none
+              absolute left-4 md:left-48
+              -bottom-20 sm:-bottom-10 md:-bottom-14 
+              w-72 md:w-80 lg:w-80
+              z-20"
+            />
       </Layout>
     </>
   );

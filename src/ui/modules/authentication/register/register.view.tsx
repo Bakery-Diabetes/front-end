@@ -8,6 +8,7 @@ import { Typography } from "@/ui/design-system/typography/typography";
 // UTILS
 import Link from "next/link";
 import { RegisterForm } from "./register.form";
+import Image from "next/image";
 
 interface Props {
     form: FormsType;
