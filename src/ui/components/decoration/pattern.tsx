@@ -35,12 +35,10 @@ export function Pattern({
           style={{ backgroundImage: `url('${src}')` }}
         >
           {imageSrc && (
-            <Image
+            <img
               src={imageSrc}
               alt={imageAlt}
-              className="max-w-[80%] max-h-[80%] object-contain justify-center mx-auto"
-              width={300}
-              height={300}
+              className="max-w-[80%] max-h-[80%] object-contain mx-auto"
             />
           )}
       </div>
