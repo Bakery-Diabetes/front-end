@@ -84,7 +84,7 @@ export default function About() {
               src="/assets/svg/pattern2.svg"
               className="w-full h-full rounded"
               repeat="repeat-y"
-              imageSrc="/assets/images/msenhaji.png"
+              imageSrc="/assets/images/msenhaji-v2.png"
             />
             <div className="space-y-4">
               <Typography variant="h2" component="h2">
