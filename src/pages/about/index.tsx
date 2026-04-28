@@ -5,7 +5,6 @@ import { Layout } from "@/ui/components/layout/layout";
 import { Seo } from "@/ui/components/seo/seo";
 import { Typography } from "@/ui/design-system/typography/typography";
 import Image from "next/image";
-import { FaPlay } from "react-icons/fa";
 
 export default function About() {
   return (
